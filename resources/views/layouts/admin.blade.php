@@ -9,22 +9,29 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Pavel - Admin Panel</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('admin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="{{asset('admin/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="{{asset('admin/dist/css/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/dist/css/sb-admin-2.css')}}" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="{{asset('admin/vendor/morrisjs/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/vendor/morrisjs/morris.css')}}" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="{{asset('admin/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('backend/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+
+    <!-- DataTables CSS -->
+    <link href="{{asset('backend/vendor/datatables-plugins/dataTables.bootstrap.css')}}" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="{{asset('backend/vendor/datatables-responsive/dataTables.responsive.css')}}" rel="stylesheet">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Home</a>
+                <a class="navbar-brand" href="{{ url('/') }}">Home</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -87,16 +94,16 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url('/admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users"></i> Users<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="{{ route('users.index') }}"><i class="fa fa-server"></i> User List</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="{{ route('users.create') }}"><i class="fa fa-user-plus"></i> Add User</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -194,22 +201,32 @@
 
 
     <!-- jQuery -->
-    <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{{asset('admin/vendor/metisMenu/metisMenu.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/metisMenu/metisMenu.min.js')}}"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="{{asset('admin/vendor/raphael/raphael.min.js')}}"></script>
-    <script src="{{asset('admin/vendor/morrisjs/morris.min.js')}}"></script>
-    <script src="{{asset('admin/data/morris-data.js')}}"></script>
+    <script src="{{asset('backend/vendor/raphael/raphael.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/morrisjs/morris.min.js')}}"></script>
+    <script src="{{asset('backend/data/morris-data.js')}}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{{asset('admin/dist/js/sb-admin-2.js')}}"></script>
+    <script src="{{asset('backend/dist/js/sb-admin-2.js')}}"></script>
 
 
+    <script src="{{asset('backend/vendor/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/datatables-plugins/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('backend/vendor/datatables-responsive/dataTables.responsive.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+        });
+    </script>
 </body>
 </html>
