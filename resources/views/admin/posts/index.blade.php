@@ -35,20 +35,20 @@
                         <td>{{ $sl }}</td>
                         <td class="center">{{ $post->user->name }}</td>
                         @if($post->photo_id)
-                        <td>
-                            <img height="50px" width="50px" src="/images/{{ $post->photo ? $post->photo->photo : 'No Photo' }}" alt="">
+                        <td class="text-center">
+                            <img height="50px" width="100px" src="/images/{{ $post->photo ? $post->photo->photo : 'No Photo' }}" alt="">
                         </td>
                         @else
-                        <td><img src="http://placehold.it/400x400" height="50px" width="50px" alt=""> </td>
+                        <td class="text-center"><img src="http://placehold.it/400x400" height="50px" width="50px" alt=""> </td>
                         @endif
-                        <td>{{ $post->category_id }}</td>
+                        <td>{{ $post->category->name }}</td>
                         <td>{{ $post->title }}</td>
-                        <td class="center">{{ $post->body }}</td>
+                        <td class="center">{{ str_limit($post->body, 30) }}</td>
                         <td class="center">
-                            <a class="btn btn-sm btn-primary" href="">Edit</a> 
+                            <a class="btn btn-sm btn-primary" href="{{ route('posts.edit', $post->id) }}">Edit</a> 
                         </td>
                         <td>
-                            {!! Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $post->id], 'files' => true]) !!}
+                            {!! Form::open(['method' => 'DELETE', 'action' => ['AdminPostsController@destroy', $post->id]]) !!}
 
                             <div class="form-group">
                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
