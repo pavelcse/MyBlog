@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 @section('content')
 
+@if(Session::has('message'))
+    <ul class="list-group">
+        <li class="list-group-item alert alert-danger">{{Session::get('message')}}</li>
+    </ul>
+@endif
 <div class="panel panel-default">
         <div class="panel-heading">
             All User List
@@ -16,7 +21,8 @@
                         <th>Email</th>
                         <th>Role</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,13 +38,23 @@
                             <img height="50px" width="50px" src="/images/{{ $user->photo ? $user->photo->photo : 'No Photo' }}" alt="">
                         </td>
                         @else
-                        <td><img src="http://placehold.it/400x400" height="50px" width="50px" alt=""></td>
+                        <td><img src="http://placehold.it/400x400" height="50px" width="50px" alt=""> </td>
                         @endif
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td class="center">{{ $user->role->name }}</td>
                         <td class="center">{{ $user->is_active == 1 ? 'Active' : 'Not Active' }}</td>
-                        <td class="center"><a class="btn btn-sm btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a> | <a class="btn btn-sm btn-primary" href="">Delete</a></td>
+                        <td class="center">
+                            <a class="btn btn-sm btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a> 
+                        </td>
+                        <td>
+                            {!! Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $user->id], 'files' => true]) !!}
+
+                            <div class="form-group">
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
 
                     @endforeach
